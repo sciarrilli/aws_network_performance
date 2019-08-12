@@ -61,6 +61,7 @@ iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5204 &
 iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5205 &
 iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5206 &
 iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5207 &
+```
 
 
 ### On the iperf client for inter region
