@@ -67,6 +67,9 @@ iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5205 &
 iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5206 &
 iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5207 &
 ```
+After adding a few more flows we get the money shot of 91 Gbps!
+
+![money_shot](https://github.com/sciarrilli/aws_network_performance/blob/master/images/money_shot.png)
 
 
 
