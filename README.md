@@ -1,4 +1,4 @@
-# AWS Network Performance
+# AWS 100Gb Network Performance
 
 Out of curiousity I wanted to test the networking performance of the 100Gb performance in AWS. The c5n as well as the i3en peaked my interest in seeing the bandwidth performance hit 100Gbps on my terminal. So I fired up two i3en.24xlarge in a placement group in the us-east-1. Then I installed iperf3 on both instances. I had to background the processes of iperf and run it multiple times on the server and the client to actually generate multiple flows. 
 
