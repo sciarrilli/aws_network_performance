@@ -56,7 +56,7 @@ The first flow
 iperf3 -c 172.31.90.102 -P 96 -t 600 &
 ```
 
-![first_flow](https://github.com/sciarrilli/aws_network_performace/images/first_flow.png)
+![first_flow](https://github.com/sciarrilli/aws_network_performance/blob/master/images/first_flow.png)
 
 
 ``` /bin/bash
