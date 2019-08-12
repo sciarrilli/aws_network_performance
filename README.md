@@ -4,6 +4,9 @@ Out of curiousity I wanted to test the networking performance of the 100Gb perfo
 ## Performance in a Region
 What I observed in a region and inside of a placement group with the i3en.24xlarge is that a single flow receives 25Gb of bandwidth. I then backgrounded the iperf processes and started to add additional iperf sessions. Each additional session would increment the traffic by almost 25Gb. As I added more and more iperf sessions the added bandwidth would diminish as I approached 100Gbps. The sweet spot seems to be 7 iperf sessions which maxed out the bandwidth at 91 Gbps. 
 
+## How to measure bandwidth
+As I dug into network performance in AWS I started with cloudwatch monitoring. I noticed that the metrics that are shown in the AWS console for EC2 show network metrics in bytes. I began to scratch my head because networking is not measured in bytes, its bits. So I did some quick searching and found nload. [nload](https://linux.die.net/man/1/nload) is a pretty slick tool written by Roland Riegel that allows you to monitor network traffic and bandwidth usage in real time.
+
 ### On the iperf server
 ```
 iperf3 -s -p &
@@ -19,15 +22,18 @@ iperf3 -s -p 5210 &
 ```
 
 ### On the iperf client
+
+The first flow 
 ```
 iperf3 -c 172.31.90.102 -P 96 -t 600 &
+```
 iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5202 &
 iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5203 &
 iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5204 &
 iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5205 &
 iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5206 &
 iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5207 &
-```
+
 
 ### On the iperf client for inter region
 ```
