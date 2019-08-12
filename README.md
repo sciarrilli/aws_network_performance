@@ -7,6 +7,29 @@ What I observed in a region and inside of a placement group with the i3en.24xlar
 ## How to measure bandwidth
 As I dug into network performance in AWS I started with cloudwatch monitoring. I noticed that the metrics that are shown in the AWS console for EC2 show network metrics in bytes. I began to scratch my head because networking is not measured in bytes, its bits. So I did some quick searching and found nload. [nload](https://linux.die.net/man/1/nload) is a pretty slick tool written by Roland Riegel that allows you to monitor network traffic and bandwidth usage in real time.
 
+## Installing iperf3
+
+```
+sudo yum update -y
+sudo yum install iperf3
+```
+
+## Installing nload
+
+```
+sudo yum groupinstall "Development Tools" -y
+sudo yum install ncurses-devel -y
+
+# Download and install
+cd /tmp
+wget http://www.roland-riegel.de/nload/nload-0.7.4.tar.gz
+tar --extract --gzip --file nload-0.7.4.tar.gz
+cd nload*
+./configure
+make
+sudo make install
+```
+
 ### On the iperf server
 ```
 iperf3 -s -p &
