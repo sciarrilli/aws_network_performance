@@ -43,9 +43,6 @@ iperf3 -s -p 5204 &
 iperf3 -s -p 5205 &
 iperf3 -s -p 5206 &
 iperf3 -s -p 5207 &
-iperf3 -s -p 5208 &
-iperf3 -s -p 5209 &
-iperf3 -s -p 5210 &
 ```
 
 ### On the iperf client
@@ -67,24 +64,34 @@ iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5205 &
 iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5206 &
 iperf3 -c 172.31.90.102 -P 96 -t 600 -p 5207 &
 ```
-After adding a few more flows we get the money shot of 91 Gbps!
+
+After adding a few more flows we get the money shot of 91 Gbps with nload! 
 
 ![money_shot](https://github.com/sciarrilli/aws_network_performance/blob/master/images/money_shot.png)
 
-
-
-
 ### On the iperf client for inter region
+
+I launched a c5n.18xlarge in us-west-2 and started a few iperf3 server sessions on it.
+
+``` /bin/bash
+iperf3 -s -p &
+iperf3 -s -p 5202 &
+iperf3 -s -p 5203 &
+iperf3 -s -p 5204 &
+```
+
+Then I connected from my i3en.24xlarge instance in us-east-1.
+
 
 ``` /bin/bash
 iperf3 -c 100.64.3.38 -P 96 -t 600 &
+```
+
+``` /bash/bash
 iperf3 -c 100.64.3.38 -P 96 -t 600 -p 5202 &
 iperf3 -c 100.64.3.38 -P 96 -t 600 -p 5203 &
-iperf3 -c 100.64.3.38 -P 96 -t 600 -p 5204 &
-iperf3 -c 100.64.3.38 -P 96 -t 600 -p 5205 &
-iperf3 -c 100.64.3.38 -P 96 -t 600 -p 5206 &
-iperf3 -c 100.64.3.38 -P 96 -t 600 -p 5207 &
-iperf3 -c 100.64.3.38 -P 96 -t 600 -p 5208 &
-iperf3 -c 100.64.3.38 -P 96 -t 600 -p 5209 &
-iperf3 -c 100.64.3.38 -P 96 -t 600 -p 5210 &
 ```
+
+The instance never goes beyond 5Gbps. 
+
+![inter_region](https://github.com/sciarrilli/aws_network_performance/blob/master/images/inter_region.png)
